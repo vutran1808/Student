@@ -19,10 +19,13 @@ public class StudentManager extends Menu {
 
     public StudentManager() {
         super("Student Manager", new String[]{"Create Student", "Find and Sort", "Update/Delete", "Report", "Exit"});
-        Student student1 = new Student("1", "Vu", "Fall", "Java");
-        Student student2 = new Student("2", "Long", "Fall", ".Net");
+        Student student1 = new Student("1", "Vu", "Java");
+        Student student2 = new Student("2", "Long", ".Net");
+        Student student3 = new Student("2", "Long", ".Net");                       
         school.addStudent(student1);
         school.addStudent(student2);
+        school.addStudent(student3);
+
     }
 
     public void CreateStudent() {
@@ -30,12 +33,10 @@ public class StudentManager extends Menu {
         String id = sc.getScanner().nextLine();
         System.out.println("Enter Student Name");
         String name = sc.getScanner().nextLine();
-        System.out.println("Enter Semester");
-        String semester = sc.getScanner().nextLine();
         System.out.println("Enter courses");
         System.out.println("(Java - .Net - C/C++)");
         String course = sc.getScanner().nextLine();
-        Student student = new Student(id, name, semester, course);
+        Student student = new Student(id, name, course);
         if (school.showAll().size() > 10) {
             System.out.println("Do you want to continute(Y/N) ?");
             String input = sc.getScanner().nextLine();
@@ -48,7 +49,7 @@ public class StudentManager extends Menu {
                 }
             }
         } else {
-            school.addStudent(student);
+            school.checkStudent(student);
         }
     }
 

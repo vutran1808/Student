@@ -12,11 +12,9 @@ import java.util.TreeMap;
  * @author ASUS
  */
 public class Student {
-//    ID, Student Name, Semester, Course Name
 
     private String id;
     private String name;
-    private String semester;
     private String course;
     private Map<String, Integer> totalCouse = new TreeMap<>();
 
@@ -25,10 +23,9 @@ public class Student {
     public Student() {
     }
 
-    public Student(String id, String name, String semester, String course) {
+    public Student(String id, String name, String course) {
         this.id = id;
         this.name = name;
-        this.semester = semester;
         this.course = course;
     }
 
@@ -39,21 +36,13 @@ public class Student {
     public void setId(String id) {
         this.id = id;
     }
-
+    
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getSemester() {
-        return semester;
-    }
-
-    public void setSemester(String semester) {
-        this.semester = semester;
     }
 
     public String getCourse() {
@@ -63,23 +52,23 @@ public class Student {
     public void setCourse(String course) {
         this.course = course;
     }
-//
-//    public void addCourse(String course) {
-//        if (totalCouse.containsKey(course)) {
-//            int count = totalCouse.get(course) + 1;
-//            totalCouse.put(course, count);
-//        } else {
-//            totalCouse.put(course, 1);
-//        }
-//    }
-//    
-//    public int getTotalCourse(){
-//        return totalCouse.size();
-//    }
 
+    public void getTotal(String course){
+        if(this.totalCouse.containsKey(course)){
+            int count = totalCouse.get(course) + 1;
+            totalCouse.put(course, count);
+        }else {
+            totalCouse.put(course, 1);
+        }
+    }
+    
+    public String printCourse(String course){
+        return ", Course: " + course + ", Total Courses: " + totalCouse.get(course);
+    }
+    
     @Override
     public String toString() {
-        return "Student{" + "id=" + id + ", name=" + name + ", semester=" + semester + ", course=" + course + '}';
+        return "Student{" + "id=" + id + ", name=" + name + printCourse(course) + '}';
     }
 
 }

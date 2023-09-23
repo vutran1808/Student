@@ -30,20 +30,21 @@ public class School {
 
     public void addStudent(Student student) {
         this.studentlists.add(student);
+        student.getTotal(student.getCourse());
     }
 
-//    public void checkStudent(Student student) {
-//        for (Student std : studentlists) {
-//            if (std.getId().equals(student.getId()) && std.getName().equals(student.getName())) {
-//                std.addCourse(student.getCourse());
-//            } else {
-//                addStudent(student);
-//            }
-//        }
-//    }
+    public void checkStudent(Student student) {
+        showAll().forEach(std -> {
+            if (std.getId().equals(student.getId())
+                    && std.getName().equals(student.getName()) 
+                    && std.getCourse().equals(student.getCourse())) {
+                std.getTotal(student.getCourse());
+            }
+        });
+    }
 
     public Predicate<Student> sameName(String name) {
-        return student -> student.getName().equalsIgnoreCase(name);
+        return student -> student.getName().contains(name);
     }
 
     public Predicate<Student> sameID(String id) {

@@ -4,6 +4,7 @@
  */
 package view;
 
+import controller.ScannerFactory;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -34,9 +35,9 @@ public abstract class Menu<T> {
     }
 
     public int getSelect() {
-        Scanner sc = new Scanner(System.in);
+        ScannerFactory sc = new ScannerFactory();
         display();
-        return Integer.parseInt(sc.nextLine());
+        return Integer.parseInt(sc.getScanner().nextLine());
     }
 
     public abstract void execute(int n);
